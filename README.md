@@ -1,1 +1,1 @@
-# Ai Resume Analyzer Frontend
+# Ai Resume Analyzer Frontend(FE)
