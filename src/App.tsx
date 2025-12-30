@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from './app/hooks';
 import { fetchUserDetails } from './features/authSlice';
 
 const Login = lazy(() => import('./pages/loginPage'))
+const Dashboard = lazy(() => import('./pages/dashboard'))
+const Layout = lazy(() => import ('./components/Layout'))
 
 function App() {
 
@@ -13,7 +15,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
-    
+
     if (token) {
 
       dispatch(fetchUserDetails());
@@ -24,7 +26,7 @@ function App() {
   if (loading) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-[#020617]">
-         <p className="text-white">Loading your profile...</p>
+        <p className="text-white">Loading your profile...</p>
       </div>
     );
   }
@@ -33,15 +35,17 @@ function App() {
     <BrowserRouter>
       <Suspense fallback={<div>Loading...</div>} />
 
-        <Routes>
+      <Routes>
 
-          <Route path="/" element={<div>Home</div>} />
+        <Route path="/" element={<div>Home</div>} />
 
-          <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
 
-          <Route path="/dashboard" element={<div>Dashboard</div>} />
+        <Route element={<Layout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
 
-        </Routes>
+      </Routes>
 
     </BrowserRouter>
   )
