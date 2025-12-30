@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { refreshTokens } from "./user";
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'http://localhost:5000/api/v1',
 })
 
 const PUBLIC_ENDPOINTS = ["/users/login", "/users/register"];
