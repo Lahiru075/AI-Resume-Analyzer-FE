@@ -7,6 +7,8 @@ import { fetchUserDetails } from './features/authSlice';
 const Login = lazy(() => import('./pages/loginPage'))
 const Dashboard = lazy(() => import('./pages/dashboard'))
 const Layout = lazy(() => import ('./components/Layout'))
+const AnalysisResume = lazy(() => import('./pages/AnalyzeResume'))
+const AnalysisResult = lazy(() => import('./pages/AnalysisResult'))
 
 function App() {
 
@@ -43,6 +45,9 @@ function App() {
 
         <Route element={<Layout />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/analyze" element={<AnalysisResume />} />
+          <Route path="/result" element={<AnalysisResult />} />
+
         </Route>
 
       </Routes>
