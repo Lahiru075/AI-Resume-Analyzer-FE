@@ -11,10 +11,8 @@ const AnalysisResult = () => {
     const location = useLocation();
     const navigate = useNavigate();
     
-    // AnalyzeResume පිටුවෙන් එවපු Data ටික ලබාගැනීම
     const { analysisData } = location.state || {};
 
-    // දත්ත නැත්නම් Dashboard එකට හරවා යැවීම
     if (!analysisData) {
         return (
             <div className="flex flex-col items-center justify-center h-[60vh] text-center">

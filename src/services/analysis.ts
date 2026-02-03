@@ -7,12 +7,17 @@ export const analyzeResumeAPI = async (file: File, jobTitle: string, jobDescript
     formData.append('jobTitle', jobTitle);
     formData.append('jobDescription', jobDescription);
 
-    // 3. API Call එක සිදුකරන්න
     const response = await api.post('/analysis/analyze', formData, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
     });
 
+    return response.data;
+};
+
+export const getUserHistoryAPI = async () => {
+    const response = await api.get('/analysis/history');
+    console.log(response)
     return response.data;
 };

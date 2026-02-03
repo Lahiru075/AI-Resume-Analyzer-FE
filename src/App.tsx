@@ -9,6 +9,7 @@ const Dashboard = lazy(() => import('./pages/dashboard'))
 const Layout = lazy(() => import ('./components/Layout'))
 const AnalysisResume = lazy(() => import('./pages/AnalyzeResume'))
 const AnalysisResult = lazy(() => import('./pages/AnalysisResult'))
+const History = lazy(() => import('./pages/history'))
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/analyze" element={<AnalysisResume />} />
           <Route path="/result" element={<AnalysisResult />} />
+          <Route path="/history" element={<History />} />
 
         </Route>
 

@@ -5,8 +5,8 @@ import {
     UploadCloud, FileText, X, Sparkles, 
     Briefcase, CheckCircle2, AlertCircle, Loader2 
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom'; // Navigate කිරීම සඳහා
-import { analyzeResumeAPI } from '../services/analysis'; // කලින් හදපු service එක
+import { useNavigate } from 'react-router-dom'; 
+import { analyzeResumeAPI } from '../services/analysis'; 
 
 // @ts-ignore
 import robot from '../assets/Adobe Express - file.png';
@@ -16,7 +16,7 @@ const AnalyzeResume = () => {
 
     // --- States ---
     const [file, setFile] = useState<File | null>(null);
-    const [jobTitle, setJobTitle] = useState(''); // අලුතින් එක් කළා
+    const [jobTitle, setJobTitle] = useState(''); 
     const [jobDescription, setJobDescription] = useState('');
     const [isAnalyzing, setIsAnalyzing] = useState(false);
 
@@ -33,7 +33,6 @@ const AnalyzeResume = () => {
         multiple: false
     });
 
-    // --- සැබෑ Backend එකට Data යවන Function එක ---
     const handleAnalyze = async () => {
         // 1. Validation
         if (!file || !jobDescription || !jobTitle) {
@@ -44,13 +43,11 @@ const AnalyzeResume = () => {
         setIsAnalyzing(true);
 
         try {
-            // 2. Service එක හරහා Backend එකට Request එක යැවීම
+
             const responseData = await analyzeResumeAPI(file, jobTitle, jobDescription);
 
             console.log("Analysis Success:", responseData);
 
-            // 3. Result Page එකට Navigate වීම (Data එකත් එක්කම)
-            // මෙතන 'responseData' කියන්නේ backend එකෙන් එන සම්පූර්ණ analysis object එක
             navigate('/result', { state: { analysisData: responseData } });
 
         } catch (error: any) {
@@ -138,7 +135,7 @@ const AnalyzeResume = () => {
                         </div>
                     </div>
 
-                    {/* 2. Job Title Input (අලුතින් එක් කළ කොටස) */}
+                    {/* 2. Job Title Input */}
                     <div className="bg-white p-8 rounded-[40px] border border-slate-200 shadow-xl shadow-slate-200/50">
                         <div className="flex items-center gap-3 mb-6">
                             <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600">
