@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, TrendingUp, CheckCircle, Clock, Plus, ArrowUpRight } from 'lucide-react';
+import { FileText, TrendingUp, CheckCircle, Clock, Plus, ArrowUpRight, Sparkles, LayoutDashboard } from 'lucide-react';
 import { useAppSelector } from '../app/hooks';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,139 +9,158 @@ const Dashboard = () => {
     const navigate = useNavigate();
 
     const stats = [
-        { label: 'Analyses Done', value: '08', icon: FileText, color: 'text-indigo-600', bg: 'bg-indigo-50' },
-        { label: 'Avg Match', value: '84%', icon: TrendingUp, color: 'text-purple-600', bg: 'bg-purple-50' },
+        { label: 'Analyses Done', value: '08', icon: FileText, color: 'text-blue-600', bg: 'bg-blue-50' },
+        { label: 'Avg Match', value: '84%', icon: TrendingUp, color: 'text-indigo-600', bg: 'bg-indigo-50' },
         { label: 'Skills Found', value: '112', icon: CheckCircle, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-        { label: 'Days Active', value: '14', icon: Clock, color: 'text-amber-600', bg: 'bg-amber-50' },
+        { label: 'Days Active', value: '14', icon: Clock, color: 'text-blue-600', bg: 'bg-blue-50' },
     ];
 
     return (
-        <div className="space-y-10 pb-10">
+        <div className="min-h-screen bg-[#f8faff] -mt-8 -mx-8 relative overflow-hidden font-sans pb-16">
+            
+            {/* --- 1. THE CONSISTENT LIGHT BACKGROUND (Matches Profile/Analyze) --- */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className="absolute top-[-5%] right-[-5%] w-[650px] h-[650px] bg-indigo-300/40 rounded-full blur-[120px]" />
+                <div className="absolute bottom-[5%] left-[-10%] w-[750px] h-[750px] bg-blue-200/50 rounded-full blur-[100px]" />
+                
+                <svg className="absolute w-full h-full opacity-60" viewBox="0 0 1400 1000" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="boldMesh" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.8" />
+                            <stop offset="50%" stopColor="#9333ea" stopOpacity="0.6" />
+                            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.4" />
+                        </linearGradient>
+                    </defs>
+                    <g fill="none" stroke="url(#boldMesh)" strokeWidth="2.2">
+                        {[...Array(15)].map((_, i) => (
+                            <circle key={`tr-${i}`} cx="1200" cy="200" r={100 + i * 55} opacity={0.7 - i * 0.04} />
+                        ))}
+                        {[...Array(12)].map((_, i) => (
+                            <circle key={`cl-${i}`} cx="100" cy="600" r={80 + i * 50} opacity={0.6 - i * 0.05} />
+                        ))}
+                        <path d="M-200,400 C300,800 900,100 1600,400" strokeWidth="3.5" opacity="0.4" />
+                        <path d="M-200,500 C400,900 1000,200 1600,500" strokeWidth="2.5" opacity="0.3" />
+                    </g>
+                </svg>
+            </div>
 
-            {/* --- 1. Elite Welcome Banner --- */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="relative rounded-[40px] p-10 md:p-12 text-white overflow-hidden shadow-2xl shadow-indigo-200/40"
-            >
-                {/* Deep Multi-layer Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#1e1b4b] via-[#4338ca] to-[#7c3aed]" />
+            <div className="max-w-[1500px] mx-auto px-10 py-10 relative z-10 space-y-8">
 
-                {/* Animated Mesh Patterns */}
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] -mr-40 -mt-40 animate-pulse" />
-                <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-indigo-500/20 rounded-full blur-[80px] -ml-20 -mb-20" />
-
-                <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div className="flex-1 text-center md:text-left">
-                        <motion.h2
-                            initial={{ x: -20, opacity: 0 }} 
-                            animate={{ x: 0, opacity: 1 }}
-                            className="text-4xl md:text-5xl font-black mb-4 tracking-tighter leading-tight"
-                        >
-                            Hello, {user?.name?.split(' ')[0] || 'User'}! <span className="inline-block animate-bounce">👋</span>
-                        </motion.h2>
-                        <p className="text-indigo-100 text-lg font-medium max-w-lg mb-8 opacity-90">
-                            Your AI career command center is ready. Let's optimize your resume for your next big opportunity.
-                        </p>
+                {/* --- 2. COMPACT LIGHT WELCOME BANNER --- */}
+                <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="relative rounded-[40px] p-10 bg-gradient-to-br from-[#1e40af] via-[#2563eb] to-[#4f46e5] text-white shadow-[0_30px_70px_-20px_rgba(30,58,138,0.35)] overflow-hidden border border-white/10"
+                >
+                    <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full blur-[80px] -mr-32 -mt-32" />
+                    
+                    <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
+                        <div className="space-y-3">
+                            <div className="flex items-center gap-2 text-blue-200 font-black uppercase tracking-[0.3em] text-[10px] justify-center md:justify-start">
+                                <Sparkles size={14} /> AI Hub Active
+                            </div>
+                            <h2 className="text-4xl md:text-5xl font-black tracking-tight leading-none text-center md:text-left">
+                                Hello, {user?.name?.split(' ')[0] || 'User'}! 👋
+                            </h2>
+                            <p className="text-blue-100 text-lg font-medium max-w-lg opacity-80 leading-relaxed text-center md:text-left">
+                                Your career command center is ready. Let's optimize something great today.
+                            </p>
+                        </div>
                         <button
                             onClick={() => navigate('/analyze')}
-                            className="bg-white text-[#1e1b4b] font-black px-8 py-4 rounded-2xl flex items-center gap-3 hover:bg-indigo-50 transition-all shadow-xl active:scale-95 group"
+                            className="bg-white text-[#1e40af] font-black px-8 py-4 rounded-2xl flex items-center gap-3 hover:bg-blue-50 transition-all shadow-xl active:scale-95 group"
                         >
-                            <Plus className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
-                            Start New Analysis
+                            <Plus size={20} className="group-hover:rotate-90 transition-transform duration-300" />
+                            New Analysis
+                        </button>
+                    </div>
+                </motion.div>
+
+                {/* --- 3. SMALL COMPACT STATS GRID --- */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-1">
+                    {stats.map((stat, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: i * 0.05 }}
+                            className="bg-white/80 backdrop-blur-xl border border-white p-6 rounded-[35px] shadow-xl shadow-blue-100/20 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 group cursor-default"
+                        >
+                            <div className="flex items-center gap-4">
+                                <div className={`${stat.bg} ${stat.color} w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
+                                    <stat.icon size={22} />
+                                </div>
+                                <div>
+                                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none">{stat.label}</p>
+                                    <h4 className="text-2xl font-black text-slate-800 tracking-tight mt-1">{stat.value}</h4>
+                                </div>
+                                <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <ArrowUpRight size={16} className="text-blue-500" />
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* --- 4. RECENT ACTIVITY SECTION --- */}
+                <div className="bg-white/80 backdrop-blur-3xl rounded-[45px] border border-white shadow-2xl shadow-blue-100/30 overflow-hidden">
+                    <div className="p-8 md:p-10 border-b border-slate-50 flex justify-between items-center bg-slate-50/40">
+                        <div>
+                            <h3 className="text-2xl font-black text-slate-800 tracking-tight">Recent Insights</h3>
+                            <p className="text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mt-2">Latest performance reports</p>
+                        </div>
+                        <button 
+                            onClick={() => navigate('/history')} 
+                            className="text-xs font-black text-blue-600 hover:text-blue-800 flex items-center gap-2 group transition-all"
+                        >
+                            View All <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                         </button>
                     </div>
 
-                    {/* Decoration Element */}
-                    <div className="hidden lg:flex w-48 h-48 bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[40px] items-center justify-center rotate-6 shadow-2xl relative">
-                        <TrendingUp className="w-24 h-24 text-white opacity-80" />
-                        <div className="absolute -top-2 -right-2 w-4 h-4 bg-emerald-400 rounded-full animate-ping" />
-                    </div>
-                </div>
-            </motion.div>
-
-            {/* --- 2. Stats Section --- */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {stats.map((stat, i) => (
-                    <motion.div
-                        key={i}
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        // White cards on Grey background look amazing with this shadow
-                        className="bg-white border border-slate-200 p-7 rounded-[35px] shadow-sm hover:shadow-xl hover:shadow-indigo-500/10 hover:-translate-y-1 transition-all duration-300 group cursor-default"
-                    >
-                        <div className="flex justify-between items-start mb-6">
-                            <div className={`${stat.bg} ${stat.color} w-14 h-14 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                                <stat.icon className="w-7 h-7" />
-                            </div>
-                            <ArrowUpRight className="w-5 h-5 text-slate-300 group-hover:text-indigo-500 transition-colors" />
-                        </div>
-                        <h4 className="text-4xl font-black text-slate-800 tracking-tighter">{stat.value}</h4>
-                        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.2em] mt-2">{stat.label}</p>
-                    </motion.div>
-                ))}
-            </div>
-
-            {/* --- 3. Recent Activity Section --- */}
-            <div className="bg-white rounded-[40px] border border-slate-200 shadow-xl shadow-slate-200/60 overflow-hidden">
-                <div className="p-8 md:p-10 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-                    <div>
-                        <h3 className="text-2xl font-black text-slate-800 tracking-tight">Recent Insights</h3>
-                        <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1">Your latest performance reports</p>
-                    </div>
-                    <button 
-                        onClick={() => navigate('/history')} 
-                        className="text-sm font-bold text-indigo-600 hover:text-purple-600 transition-colors flex items-center gap-1 group"
-                    >
-                        View Full Archive <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                    </button>
-                </div>
-
-                <div className="overflow-x-auto">
-                    <table className="w-full text-left">
-                        <thead className="bg-slate-50/80 text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">
-                            <tr>
-                                <th className="px-10 py-6 font-black text-slate-500">Target Position</th>
-                                <th className="px-10 py-6 font-black text-slate-500">Date</th>
-                                <th className="px-10 py-6 font-black text-slate-500">ATS Score</th>
-                                <th className="px-10 py-6 text-right font-black text-slate-500">Details</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-100 text-sm font-bold">
-                            {[
-                                { job: 'Frontend Developer', date: '30 Dec, 2025', score: '92', color: 'bg-emerald-500', text: 'text-emerald-600' },
-                                { job: 'Node.js Backend Engineer', date: '28 Dec, 2025', score: '74', color: 'bg-amber-500', text: 'text-amber-600' },
-                                { job: 'Full Stack Engineer', date: '25 Dec, 2025', score: '61', color: 'bg-orange-500', text: 'text-orange-600' },
-                            ].map((row, i) => (
-                                <tr key={i} className="hover:bg-slate-50 transition-colors group">
-                                    <td className="px-10 py-6 text-slate-800 font-extrabold">{row.job}</td>
-                                    <td className="px-10 py-6 text-slate-400 font-medium">{row.date}</td>
-                                    <td className="px-10 py-6">
-                                        <div className="flex items-center gap-3">
-                                            <div className="flex-1 h-2 bg-slate-100 rounded-full max-w-[80px] overflow-hidden shadow-inner">
-                                                <motion.div 
-                                                    initial={{ width: 0 }}
-                                                    animate={{ width: `${row.score}%` }}
-                                                    transition={{ duration: 1, delay: 0.5 }}
-                                                    className={`h-full ${row.color}`} 
-                                                />
-                                            </div>
-                                            <span className={`${row.text}`}>{row.score}%</span>
-                                        </div>
-                                    </td>
-                                    <td className="px-10 py-6 text-right">
-                                        <button className="p-3 bg-slate-50 text-slate-400 rounded-xl hover:bg-indigo-600 hover:text-white transition-all shadow-sm group-hover:shadow-md">
-                                            <ArrowUpRight className="w-5 h-5" />
-                                        </button>
-                                    </td>
+                    <div className="overflow-x-auto px-4 pb-4">
+                        <table className="w-full text-left">
+                            <thead className="bg-slate-50/50 text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">
+                                <tr>
+                                    <th className="px-8 py-6">Target Role</th>
+                                    <th className="px-8 py-6 text-center">Date</th>
+                                    <th className="px-8 py-6 text-center">ATS Score</th>
+                                    <th className="px-8 py-6 text-right">Action</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="divide-y divide-slate-50 text-sm font-bold">
+                                {[
+                                    { job: 'Frontend Developer', date: '30 Dec, 2025', score: '92', color: 'bg-emerald-500', text: 'text-emerald-600' },
+                                    { job: 'Backend Engineer', date: '28 Dec, 2025', score: '74', color: 'bg-blue-600', text: 'text-blue-600' },
+                                    { job: 'Full Stack Dev', date: '25 Dec, 2025', score: '61', color: 'bg-indigo-500', text: 'text-indigo-600' },
+                                ].map((row, i) => (
+                                    <tr key={i} className="hover:bg-blue-50/30 transition-colors group">
+                                        <td className="px-8 py-6 text-slate-800 font-black">{row.job}</td>
+                                        <td className="px-8 py-6 text-slate-400 font-bold text-center">{row.date}</td>
+                                        <td className="px-8 py-6">
+                                            <div className="flex items-center justify-center gap-3">
+                                                <div className="w-20 h-2 bg-slate-100 rounded-full overflow-hidden shadow-inner">
+                                                    <motion.div 
+                                                        initial={{ width: 0 }}
+                                                        animate={{ width: `${row.score}%` }}
+                                                        className={`h-full ${row.color}`} 
+                                                    />
+                                                </div>
+                                                <span className={`${row.text} font-black text-xs w-8`}>{row.score}%</span>
+                                            </div>
+                                        </td>
+                                        <td className="px-8 py-6 text-right">
+                                            <button className="p-3 bg-white border border-slate-100 text-slate-300 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-sm group-hover:shadow-lg">
+                                                <ArrowUpRight size={18} />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     );
 };

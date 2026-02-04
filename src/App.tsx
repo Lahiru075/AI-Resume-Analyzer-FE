@@ -10,6 +10,7 @@ const Layout = lazy(() => import ('./components/Layout'))
 const AnalysisResume = lazy(() => import('./pages/AnalyzeResume'))
 const AnalysisResult = lazy(() => import('./pages/AnalysisResult'))
 const History = lazy(() => import('./pages/history'))
+const Profile = lazy(() => import('./pages/profile'))
 
 function App() {
 
@@ -20,7 +21,6 @@ function App() {
     const token = localStorage.getItem('accessToken');
 
     if (token) {
-
       dispatch(fetchUserDetails());
     }
   }, [dispatch]);
@@ -49,6 +49,7 @@ function App() {
           <Route path="/analyze" element={<AnalysisResume />} />
           <Route path="/result" element={<AnalysisResult />} />
           <Route path="/history" element={<History />} />
+          <Route path="/profile" element={<Profile />} />
 
         </Route>
 
